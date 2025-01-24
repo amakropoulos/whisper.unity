@@ -43,10 +43,23 @@ jobs:
           cd ${{ github.workspace }}\whisper-cpp\build\bin\Release
           ren whisper.dll libwhisper_cuda.dll
           
+      - id: copy_cuda_dlls
+        name: Copy Cuda DLLs
+        run: |
+          cd whisper-cpp\build\bin\Release
+          mv "${{ env.CUDA_PATH }}"/bin/cudart64_*.dll build/libs/Release
+          mv "${{ env.CUDA_PATH }}"/bin/cublas64_*.dll build/libs/Release
+          mv "${{ env.CUDA_PATH }}"/bin/cublasLt64_*.dll build/libs/Release
+        shell: bash
+
+      - id: zip
+        run: |
+          cd whisper-cpp\build\bin\Release
+          7z a ${{ github.workspace }}\cuda.zip *dll
+
       - name: Upload results
         uses: actions/upload-artifact@v3
         with:
           name: windows-cuda
-          path: ${{ github.workspace }}/whisper-cpp/build/bin/Release/libwhisper_cuda.dll
+          path: ${{ github.workspace }}\cuda.zip
           if-no-files-found: error
- 
