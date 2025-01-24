@@ -18,6 +18,12 @@ jobs:
           repository: ${{ github.event.inputs.whisper_cpp_repo }}
           ref: ${{ github.event.inputs.whisper_cpp_repo_ref }}
           path: whisper-cpp
+
+      - name: Setup whisper.cpp
+        run: |
+          cd whisper-cpp
+          sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" CMakeLists.txt
+        shell: bash
           
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1
@@ -27,11 +33,6 @@ jobs:
         uses: Jimver/cuda-toolkit@v0.2.11
         with:
           cuda: '12.2.0'
-
-      - name: Setup llama.cpp
-        run: |
-          sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" whisper-cpp\CMakeLists.txt
-        shell: bash
         
       - name: Run build script
         run: |
