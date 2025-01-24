@@ -23,7 +23,7 @@ jobs:
         run: |
           cd whisper-cpp
           dir
-          sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" .\CMakeLists.txt
+          sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" CMakeLists.txt
         shell: bash
           
       - name: Add msbuild to PATH
