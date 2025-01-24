@@ -15,8 +15,8 @@ jobs:
       - name: Clone whisper.cpp
         uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.inputs.whisper_cpp_repo }}
-          ref: ${{ github.event.inputs.whisper_cpp_repo_ref }}
+          repository: ggerganov/whisper.cpp
+          ref: v1.6.0
           path: whisper-cpp
 
       - name: Setup whisper.cpp
