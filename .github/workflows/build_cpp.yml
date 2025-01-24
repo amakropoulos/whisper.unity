@@ -18,13 +18,6 @@ jobs:
           repository: ggerganov/whisper.cpp
           ref: v1.6.0
           path: whisper-cpp
-
-      - name: Setup whisper.cpp
-        run: |
-          cd whisper-cpp
-          dir
-          sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" CMakeLists.txt
-        shell: bash
           
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1
