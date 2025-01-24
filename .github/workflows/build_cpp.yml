@@ -39,10 +39,10 @@ jobs:
       - id: copy_cuda_dlls
         name: Copy Cuda DLLs
         run: |
-          cd whisper-cpp\build\bin\Release
-          mv "${{ env.CUDA_PATH }}"/bin/cudart64_*.dll build/libs/Release
-          mv "${{ env.CUDA_PATH }}"/bin/cublas64_*.dll build/libs/Release
-          mv "${{ env.CUDA_PATH }}"/bin/cublasLt64_*.dll build/libs/Release
+          cd whisper-cpp/build/bin/Release
+          mv "${{ env.CUDA_PATH }}"/bin/cudart64_*.dll ./
+          mv "${{ env.CUDA_PATH }}"/bin/cublas64_*.dll ./
+          mv "${{ env.CUDA_PATH }}"/bin/cublasLt64_*.dll ./
         shell: bash
 
       - id: zip
