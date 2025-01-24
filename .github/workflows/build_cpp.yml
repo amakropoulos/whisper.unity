@@ -21,7 +21,7 @@ jobs:
 
       - name: Setup whisper.cpp
         run: |
-          cd whisper-cpp
+          cd whisper.cpp
           sed -i "s/CUDA::cublas CUDA::cublasLt/CUDA::cublas_static CUDA::cublasLt_static/g" CMakeLists.txt
         shell: bash
           
