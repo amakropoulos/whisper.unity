@@ -15,7 +15,7 @@ goto commonexit
 	echo Starting building cpu target...
 	cd %whisper_path%
 	rmdir .\build /s /q
-	cmake -S . -B ./build -A x64 -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF 
+	cmake -S . -B ./build -A x64 -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF -DWHISPER_STATIC=ON
 
 	cd ./build
 	msbuild ALL_BUILD.vcxproj -t:build -p:configuration=Release -p:platform=x64
@@ -26,7 +26,7 @@ goto commonexit
 	echo Starting building CUDA target...
 	cd %whisper_path%
 	rmdir .\build /s /q
-	cmake -S . -B ./build -A x64 -DWHISPER_CUBLAS=ON -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF 
+	cmake -S . -B ./build -A x64 -DWHISPER_CUBLAS=ON -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF -DWHISPER_STATIC=ON
 
 	cd ./build
 	msbuild ALL_BUILD.vcxproj -t:build -p:configuration=Release -p:platform=x64
