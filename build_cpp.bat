@@ -26,8 +26,7 @@ goto commonexit
 	echo Starting building CUDA target...
 	cd %whisper_path%
 	rmdir .\build /s /q
-	cmake -S . -B ./build -A x64 -DWHISPER_CUBLAS=ON -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF -DWHISPER_STATIC=ON
-
+	cmake -S . -B ./build -A x64 -DWHISPER_CUBLAS=ON -DCMAKE_BUILD_TYPE=Release -DWHISPER_BUILD_TESTS=OFF -DWHISPER_BUILD_EXAMPLES=OFF -DWHISPER_STATIC=ON -DCMAKE_CUDA_ARCHITECTURES="52;61;70;75;86;89"
 	cd ./build
 	msbuild ALL_BUILD.vcxproj -t:build -p:configuration=Release -p:platform=x64
 	xcopy /y /q .\bin\Release\whisper.dll %unity_path%\Packages\com.whisper.unity\Plugins\Windows\libwhisper_cuda.dll*
