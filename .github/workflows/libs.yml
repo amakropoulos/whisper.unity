@@ -14,6 +14,9 @@ jobs:
 
       - name: whisper.unity libs
         run: |
+          pwd
+          ls
+          ls Packages/com.whisper.unity/Plugins/iOS/*.a
           f=libllamalib_ios-arm64.a
           nm -gU $f > $f.symbols
           for f in Packages/com.whisper.unity/Plugins/iOS/*.a;do
