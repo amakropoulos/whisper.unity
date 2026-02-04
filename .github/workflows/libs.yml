@@ -1,0 +1,29 @@
+name: Testing
+
+on:
+  push:
+
+jobs:
+  build-linux:
+    name: Test libs    
+    runs-on: macos-latest
+
+    steps:
+      - name: Clone whisper.unity
+        uses: actions/checkout@v3
+
+      - name: whisper.unity libs
+        run: |
+          f=libllamalib_ios-arm64.a
+          nm -gU $f > $f.symbols
+          for f in Packages/com.whisper.unity/Plugins/iOS/*.a;do
+            nm -gU $f > $f.symbols
+          done
+          zip symbols.zip *.symbols
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: symbols
+          path: symbols.zip
+          if-no-files-found: error
