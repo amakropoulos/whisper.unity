@@ -15,6 +15,7 @@ jobs:
       - name: whisper.unity libs
         run: |
           f=libllamalib_ios-arm64.a
+          strip -S -x $f
           nm -gU $f > $f.symbols
           curr_dir=`pwd`
           cd Packages/com.whisper.unity/Plugins/iOS
