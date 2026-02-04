@@ -19,9 +19,11 @@ jobs:
           curr_dir=`pwd`
           cd Packages/com.whisper.unity/Plugins/iOS
           for f in *.a;do
+            echo $f
             nm -gU $f > $f.symbols
           done
           mv *.symbols $curr_dir
+          cd $curr_dir
           zip symbols.zip *.symbols
 
       - name: Upload results
