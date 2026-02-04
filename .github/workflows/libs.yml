@@ -16,9 +16,12 @@ jobs:
         run: |
           f=libllamalib_ios-arm64.a
           nm -gU $f > $f.symbols
-          for f in `ls Packages/com.whisper.unity/Plugins/iOS/*.a`;do
+          curr_dir=`pwd`
+          cd Packages/com.whisper.unity/Plugins/iOS
+          for f in *.a;do
             nm -gU $f > $f.symbols
           done
+          mv *.symbols $curr_dir
           zip symbols.zip *.symbols
 
       - name: Upload results
